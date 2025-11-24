@@ -41,13 +41,61 @@ Construido con **Spring Boot**, **H2 Database**, y **Swagger/OpenAPI**.
 ## 🏗️ Arquitectura
 
 ```
-src/main/java/com/example/mutant_detector/
-├── controller/    -> Endpoints REST
-├── dto/           -> Data Transfer Objects
-├── service/       -> Lógica de negocio
-├── repository/    -> Acceso a base de datos
-├── entity/        -> Entidades JPA
-├── config/        -> Configuración Swagger / Spring
+Mutantes/
+│
+├── 📂 src/main/java/org/example/
+│   │
+│   ├── 📂 config/                    ← Configuraciones
+│   │   └── SwaggerConfig.java        (OpenAPI/Swagger)
+│   │
+│   ├── 📂 controller/                ← Capa de presentación
+│   │   └── MutantController.java     (Endpoints REST)
+│   │
+│   ├── 📂 dto/                       ← Objetos de transferencia
+│   │   ├── DnaRequest.java           (Input API)
+│   │   ├── StatsResponse.java        (Output API)
+│   │   └── ErrorResponse.java        (Errores)
+│   │
+│   ├── 📂 entity/                    ← Entidades JPA
+│   │   └── DnaRecord.java            (Tabla dna_records)
+│   │
+│   ├── 📂 exception/                 ← Manejo de errores
+│   │   ├── GlobalExceptionHandler.java
+│   │   └── DnaHashCalculationException.java
+│   │
+│   ├── 📂 repository/                ← Acceso a datos
+│   │   └── DnaRecordRepository.java  (Interface JPA)
+│   │
+│   ├── 📂 service/                   ← Lógica de negocio
+│   │   ├── MutantDetector.java       (Algoritmo core)
+│   │   ├── MutantService.java        (Orquestación)
+│   │   └── StatsService.java         (Estadísticas)
+│   │
+│   ├── 📂 validation/                ← Validaciones custom
+│   │   ├── ValidDnaSequence.java     (Anotación)
+│   │   └── ValidDnaSequenceValidator.java (Lógica)
+│   │
+│   └── MutantDetectorApplication.java ← Main class
+│
+├── 📂 src/main/resources/
+│   └── application.properties        ← Configuración app
+│
+├── 📂 src/test/java/org/example/    ← Tests
+│   ├── 📂 controller/
+│   │   └── MutantControllerTest.java
+│   └── 📂 service/
+│       ├── MutantDetectorTest.java
+│       ├── MutantServiceTest.java
+│       └── StatsServiceTest.java
+│
+├── 📂 build/                        ← Archivos compilados
+├── 📂 gradle/                       ← Wrapper de Gradle
+│
+├── build.gradle                      ← Dependencias
+├── settings.gradle                   ← Config Gradle
+├── gradlew / gradlew.bat             ← Scripts Gradle
+├── CLAUDE.md                         ← Guía técnica
+└── README.md                         ← Este archivo
 ```
 
 ---
@@ -159,18 +207,19 @@ http://localhost:8080/swagger-ui.html
 
 ## 🌐 Despliegue
 
-* Proyecto desplegado en **Render**:
-  `https://tu-app-mutant-detector.onrender.com/`
+* 🚀 **API en Vivo (Render):**
+  [https://mutant-detector-candela.onrender.com/](https://mutant-detector-candela.onrender.com/)
+  *(Nota: El primer request puede tardar unos 50 segundos en "despertar" al servidor)*
 
-* Contenedor Docker listo para producción.
+* 🐳 **Docker:** Imagen optimizada con Eclipse Temurin 17.
 
 ---
 
 ## 🧑‍💻 Autor
 
-* Estudiante: **[Tu Nombre]**
-* Email: **[****[tuemail@dominio.com](mailto:tuemail@dominio.com)****]**
-* Curso/Proyecto: **Desarrollo Avanzado Spring Boot**
+* Estudiante: **[Candela Fernandez]**
+* Email: **[****[candeefernand10@gmail.com](mailto:tuemail@dominio.com)****]**
+* Curso/Proyecto: **Desarrollo de Software**
 
 ---
 
